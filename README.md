@@ -151,7 +151,7 @@ Seeing is believing. Here’s FulusVybe flexing its stuff:
 
 ### Wallet Roast
 
-- **Command**: `/roast 7xKXtf...`
+- **Command**: `/analyze 7xKXtf...`
 
 - **Response**:
 
