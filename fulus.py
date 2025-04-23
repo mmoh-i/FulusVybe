@@ -143,14 +143,14 @@ def generate_insights(state: WalletState):
     historical_balances = state.historical_balances
     nft_balances = state.nft_balances
 
-    balance_summary = "No token data—your wallet’s on a diet!"
+    balance_summary = "No token data—your wallet's on a diet!"
     if "error" not in token_balances and token_balances.get("data"):
         balance_summary = "\n".join(
             [f"{token.get('symbol', 'Unknown')}: {token.get('amount', 0)} (Value: ${token.get('valueUsd', 0)})"
              for token in token_balances["data"]]
         )
 
-    historical_summary = "No historical data—time travel isn’t your thing yet."
+    historical_summary = "No historical data—time travel isn't your thing yet."
     if "error" not in historical_balances and historical_balances.get("data"):
         historical_data = historical_balances["data"]
         if len(historical_data) >= 2:
@@ -159,7 +159,7 @@ def generate_insights(state: WalletState):
             value_change = final_value - initial_value
             historical_summary = f"Portfolio value changed by ${value_change:.2f}—up, down, or sideways?"
 
-    nft_summary = "No NFTs—you’re not cool enough for digital art."
+    nft_summary = "No NFTs—you're not cool enough for digital art."
     if "error" not in nft_balances and nft_balances.get("data") is not None:
         nft_count = len(nft_balances["data"])
         nft_summary = f"NFT Holdings: {nft_count} NFTs (Total Value: ${nft_balances.get('totalUsd', '0')})"
@@ -184,7 +184,7 @@ def generate_insights(state: WalletState):
         insights = groq.invoke(prompt_template.format(full_summary=full_summary)).content
         state.insights = insights
     except Exception as e:
-        state.insights = f"Insights machine broke: {str(e)}—guess you’re too boring to analyze! Craving more wallet wisdom? Hit up Vybe at https://vybe.fyi!"
+        state.insights = f"Insights machine broke: {str(e)}—guess you're too boring to analyze! Craving more wallet wisdom? Hit up Vybe at https://vybe.fyi!"
     return state
 
 # Fetch program active users time series
@@ -300,9 +300,7 @@ def run_websocket():
         on_open=on_open,
         on_message=on_message,
         on_error=on_error,
-        on_close=on_close,
-        ping_interval=30,
-        ping_timeout=10
+        on_close=on_close
     )
     ws.run_forever()
 
@@ -320,7 +318,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     await update.message.reply_text(
-        "Yo, pick your vibe! 🚀 Dive into wallets, tokens, or live trades with Vybe’s epic API.",
+        "Yo, pick your vibe! 🚀 Dive into wallets, tokens, or live trades with Vybe's epic API.",
         reply_markup=reply_markup
     )
 
@@ -478,7 +476,7 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
             else:
                 response += "**Current Token Holdings**\nNo tokens found—are you a minimalist or just broke?\n\n"
         else:
-            response += "**Current Token Holdings**\nConnection hiccup—Vybe’s servers are playing hide and seek!\n\n"
+            response += "**Current Token Holdings**\nConnection hiccup—Vybe's servers are playing hide and seek!\n\n"
 
         if "error" not in result["historical_balances"] and result["historical_balances"].get("data"):
             historical_data = result["historical_balances"]["data"]
@@ -489,16 +487,16 @@ async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
                 response += f"**Portfolio Value Change**: ${value_change:.2f}—did you sneeze and miss it?\n"
                 response += "See trends on Vybe: https://vybe.fyi\n\n"
             else:
-                response += "**Portfolio Value Change**\nNo history to spill—your wallet’s a blank slate!\n\n"
+                response += "**Portfolio Value Change**\nNo history to spill—your wallet's a blank slate!\n\n"
         else:
-            response += "**Portfolio Value Change**\nNo history to spill—your wallet’s a blank slate!\n\n"
+            response += "**Portfolio Value Change**\nNo history to spill—your wallet's a blank slate!\n\n"
 
         if "error" not in result["nft_balances"] and result["nft_balances"].get("data") is not None:
             nft_count = len(result["nft_balances"]["data"])
             response += f"**NFT Holdings**: {nft_count} NFTs (Total Value: ${result['nft_balances'].get('totalUsd', '0')})\n"
             response += "Explore NFTs on Vybe: https://vybe.fyi\n\n"
         else:
-            response += "**NFT Holdings**\nNo NFTs—guess you’re not into digital bling yet!\n\n"
+            response += "**NFT Holdings**\nNo NFTs—guess you're not into digital bling yet!\n\n"
 
         response += f"**Hot Takes**\n{state.insights}"
     except Exception as e:
@@ -742,7 +740,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
         await query.message.reply_text(
-            "Yo, pick your vibe! 🚀 Dive into wallets, tokens, or live trades with Vybe’s epic API.",
+            "Yo, pick your vibe! 🚀 Dive into wallets, tokens, or live trades with Vybe's epic API.",
             reply_markup=reply_markup,
             parse_mode="Markdown"
         )
