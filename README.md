@@ -1,6 +1,6 @@
-# FulusVybe: The Snarkiest Solana Sidekick You'll Ever Meet 🌟
+# FulusVybe: The Snarkiest Solana Sidekick You'll Ever Meet
 
-Welcome to **FulusVybe**, the Telegram bot that's equal parts savage, smart, and Solana-obsessed. Powered by Vybe's cutting-edge API, this bot doesn't just fetch blockchain data—it roasts your wallet, tracks tokens with attitude, and dishes out live trade updates like a pro. Built for the crypto-curious and the DeFi die-hards, FulusVybe turns the chaos of Solana into a vibe you can't resist.
+**FulusVybe**, the Telegram bot that's equal parts savage, smart, and Solana-obsessed. Powered by Vybe's cutting-edge API, this bot doesn't just fetch blockchain data—it roasts your wallet, tracks tokens with attitude, and dishes out live trade updates like a pro. Built for the crypto-curious and the DeFi die-hards, FulusVybe turns the chaos of Solana into a vibe you can't resist.
 
 ---
 
