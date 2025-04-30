@@ -1,0 +1,319 @@
+2025-04-28 13:03:35,914 - Connected to Vybe live endpoint
+2025-04-30 13:46:13,278 - Connected to Vybe live endpoint
+2025-04-30 14:32:54,892 - WebSocket error: [Errno 54] Connection reset by peer
+2025-04-30 14:32:54,913 - WebSocket closed: None, None
+2025-04-30 14:33:09,157 - Connected to Vybe live endpoint
+2025-04-30 14:57:29,423 - Connected to Vybe live endpoint
+2025-04-30 15:00:05,336 - Connected to Vybe live endpoint
+2025-04-30 15:01:34,298 - Connected to Vybe live endpoint
+2025-04-30 15:03:41,835 - Connected to Vybe live endpoint
+2025-04-30 15:05:57,320 - WebSocket error: [Errno 54] Connection reset by peer
+2025-04-30 15:05:57,339 - WebSocket closed: None, None
+2025-04-30 15:06:05,622 - Connected to Vybe live endpoint
+2025-04-30 15:07:34,117 - WebSocket error: [Errno 54] Connection reset by peer
+2025-04-30 15:07:34,117 - WebSocket closed: None, None
+2025-04-30 15:07:58,918 - Connected to Vybe live endpoint
+2025-04-30 15:09:59,357 - WebSocket error: Connection timed out
+2025-04-30 15:09:59,359 - WebSocket closed: None, None
+2025-04-30 15:10:34,366 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:10:34,368 - WebSocket closed: None, None
+2025-04-30 15:10:39,376 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:10:39,376 - WebSocket closed: None, None
+2025-04-30 15:10:44,382 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:10:44,383 - WebSocket closed: None, None
+2025-04-30 15:10:49,387 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:10:49,388 - WebSocket closed: None, None
+2025-04-30 15:10:54,391 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:10:54,391 - WebSocket closed: None, None
+2025-04-30 15:10:59,396 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:10:59,396 - WebSocket closed: None, None
+2025-04-30 15:11:04,399 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:11:04,399 - WebSocket closed: None, None
+2025-04-30 15:11:09,402 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:11:09,402 - WebSocket closed: None, None
+2025-04-30 15:11:14,408 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:11:14,408 - WebSocket closed: None, None
+2025-04-30 15:11:19,413 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:11:19,414 - WebSocket closed: None, None
+2025-04-30 15:11:24,416 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:11:24,418 - WebSocket closed: None, None
+2025-04-30 15:11:29,426 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:11:29,426 - WebSocket closed: None, None
+2025-04-30 15:11:34,432 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:11:34,433 - WebSocket closed: None, None
+2025-04-30 15:11:39,439 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:11:39,442 - WebSocket closed: None, None
+2025-04-30 15:11:44,445 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:11:44,445 - WebSocket closed: None, None
+2025-04-30 15:11:49,448 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:11:49,448 - WebSocket closed: None, None
+2025-04-30 15:12:19,456 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:12:19,456 - WebSocket closed: None, None
+2025-04-30 15:12:24,461 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:12:24,462 - WebSocket closed: None, None
+2025-04-30 15:12:29,468 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:12:29,469 - WebSocket closed: None, None
+2025-04-30 15:12:34,471 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:12:34,472 - WebSocket closed: None, None
+2025-04-30 15:12:39,474 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:12:39,474 - WebSocket closed: None, None
+2025-04-30 15:12:44,481 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:12:44,481 - WebSocket closed: None, None
+2025-04-30 15:12:49,488 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:12:49,489 - WebSocket closed: None, None
+2025-04-30 15:12:54,494 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:12:54,494 - WebSocket closed: None, None
+2025-04-30 15:12:59,516 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:12:59,518 - WebSocket closed: None, None
+2025-04-30 15:13:04,525 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:13:04,525 - WebSocket closed: None, None
+2025-04-30 15:13:09,530 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:13:09,530 - WebSocket closed: None, None
+2025-04-30 15:13:14,536 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:13:14,537 - WebSocket closed: None, None
+2025-04-30 15:13:19,544 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:13:19,544 - WebSocket closed: None, None
+2025-04-30 15:13:24,547 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:13:24,547 - WebSocket closed: None, None
+2025-04-30 15:13:29,553 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:13:29,553 - WebSocket closed: None, None
+2025-04-30 15:13:34,556 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:13:34,556 - WebSocket closed: None, None
+2025-04-30 15:14:05,796 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:14:05,796 - WebSocket closed: None, None
+2025-04-30 15:14:10,803 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:14:10,804 - WebSocket closed: None, None
+2025-04-30 15:14:15,807 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:14:15,807 - WebSocket closed: None, None
+2025-04-30 15:14:20,814 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:14:20,815 - WebSocket closed: None, None
+2025-04-30 15:14:25,820 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:14:25,821 - WebSocket closed: None, None
+2025-04-30 15:14:30,825 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:14:30,826 - WebSocket closed: None, None
+2025-04-30 15:14:35,831 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:14:35,831 - WebSocket closed: None, None
+2025-04-30 15:14:40,837 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:14:40,838 - WebSocket closed: None, None
+2025-04-30 15:14:45,844 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:14:45,844 - WebSocket closed: None, None
+2025-04-30 15:14:50,849 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:14:50,849 - WebSocket closed: None, None
+2025-04-30 15:14:55,853 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:14:55,853 - WebSocket closed: None, None
+2025-04-30 15:15:00,860 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:15:00,861 - WebSocket closed: None, None
+2025-04-30 15:15:05,865 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:15:05,866 - WebSocket closed: None, None
+2025-04-30 15:15:10,871 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:15:10,871 - WebSocket closed: None, None
+2025-04-30 15:15:15,878 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:15:15,878 - WebSocket closed: None, None
+2025-04-30 15:15:20,885 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:15:20,885 - WebSocket closed: None, None
+2025-04-30 15:21:25,630 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:21:25,631 - WebSocket closed: None, None
+2025-04-30 15:21:30,635 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:21:30,637 - WebSocket closed: None, None
+2025-04-30 15:21:35,643 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:21:35,643 - WebSocket closed: None, None
+2025-04-30 15:21:40,646 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:21:40,647 - WebSocket closed: None, None
+2025-04-30 15:21:45,653 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:21:45,654 - WebSocket closed: None, None
+2025-04-30 15:21:50,658 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:21:50,658 - WebSocket closed: None, None
+2025-04-30 15:21:55,663 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:21:55,663 - WebSocket closed: None, None
+2025-04-30 15:22:00,665 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:22:00,666 - WebSocket closed: None, None
+2025-04-30 15:22:05,671 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:22:05,672 - WebSocket closed: None, None
+2025-04-30 15:22:10,678 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:22:10,678 - WebSocket closed: None, None
+2025-04-30 15:22:15,683 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:22:15,683 - WebSocket closed: None, None
+2025-04-30 15:22:20,689 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:22:20,690 - WebSocket closed: None, None
+2025-04-30 15:22:25,695 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:22:25,695 - WebSocket closed: None, None
+2025-04-30 15:22:30,698 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:22:30,698 - WebSocket closed: None, None
+2025-04-30 15:22:35,704 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:22:35,704 - WebSocket closed: None, None
+2025-04-30 15:22:40,711 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:22:40,712 - WebSocket closed: None, None
+2025-04-30 15:22:45,714 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:22:45,714 - WebSocket closed: None, None
+2025-04-30 15:22:50,746 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:22:50,746 - WebSocket closed: None, None
+2025-04-30 15:22:55,752 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:22:55,752 - WebSocket closed: None, None
+2025-04-30 15:23:00,755 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:23:00,755 - WebSocket closed: None, None
+2025-04-30 15:23:05,762 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:23:05,762 - WebSocket closed: None, None
+2025-04-30 15:23:10,768 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:23:10,769 - WebSocket closed: None, None
+2025-04-30 15:23:15,775 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:23:15,775 - WebSocket closed: None, None
+2025-04-30 15:23:20,782 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:23:20,783 - WebSocket closed: None, None
+2025-04-30 15:23:25,789 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:23:25,789 - WebSocket closed: None, None
+2025-04-30 15:23:30,796 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:23:30,796 - WebSocket closed: None, None
+2025-04-30 15:23:35,801 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:23:35,802 - WebSocket closed: None, None
+2025-04-30 15:23:40,806 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:23:40,806 - WebSocket closed: None, None
+2025-04-30 15:23:45,808 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:23:45,811 - WebSocket closed: None, None
+2025-04-30 15:23:50,815 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:23:50,816 - WebSocket closed: None, None
+2025-04-30 15:23:55,822 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:23:55,822 - WebSocket closed: None, None
+2025-04-30 15:24:00,824 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:24:00,824 - WebSocket closed: None, None
+2025-04-30 15:24:05,827 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:24:05,827 - WebSocket closed: None, None
+2025-04-30 15:24:10,834 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:24:10,834 - WebSocket closed: None, None
+2025-04-30 15:24:15,840 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:24:15,840 - WebSocket closed: None, None
+2025-04-30 15:24:20,847 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:24:20,847 - WebSocket closed: None, None
+2025-04-30 15:24:25,855 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:24:25,856 - WebSocket closed: None, None
+2025-04-30 15:24:30,864 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:24:30,865 - WebSocket closed: None, None
+2025-04-30 15:24:35,868 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:24:35,868 - WebSocket closed: None, None
+2025-04-30 15:24:40,872 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:24:40,872 - WebSocket closed: None, None
+2025-04-30 15:24:45,876 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:24:45,877 - WebSocket closed: None, None
+2025-04-30 15:24:50,881 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:24:50,881 - WebSocket closed: None, None
+2025-04-30 15:24:55,887 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:24:55,888 - WebSocket closed: None, None
+2025-04-30 15:25:00,894 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:25:00,895 - WebSocket closed: None, None
+2025-04-30 15:25:05,899 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:25:05,899 - WebSocket closed: None, None
+2025-04-30 15:25:10,902 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:25:10,902 - WebSocket closed: None, None
+2025-04-30 15:25:15,905 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:25:15,905 - WebSocket closed: None, None
+2025-04-30 15:25:20,910 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:25:20,910 - WebSocket closed: None, None
+2025-04-30 15:25:25,917 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:25:25,917 - WebSocket closed: None, None
+2025-04-30 15:25:30,921 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:25:30,921 - WebSocket closed: None, None
+2025-04-30 15:25:35,926 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:25:35,927 - WebSocket closed: None, None
+2025-04-30 15:25:40,932 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:25:40,933 - WebSocket closed: None, None
+2025-04-30 15:25:45,937 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:25:45,937 - WebSocket closed: None, None
+2025-04-30 15:25:50,942 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:25:50,943 - WebSocket closed: None, None
+2025-04-30 15:25:55,948 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:25:55,949 - WebSocket closed: None, None
+2025-04-30 15:26:00,954 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:26:00,955 - WebSocket closed: None, None
+2025-04-30 15:26:05,961 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:26:05,962 - WebSocket closed: None, None
+2025-04-30 15:26:10,969 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:26:10,969 - WebSocket closed: None, None
+2025-04-30 15:26:15,974 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:26:15,975 - WebSocket closed: None, None
+2025-04-30 15:26:20,981 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:26:20,981 - WebSocket closed: None, None
+2025-04-30 15:26:25,990 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:26:25,990 - WebSocket closed: None, None
+2025-04-30 15:26:30,996 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:26:30,996 - WebSocket closed: None, None
+2025-04-30 15:26:36,002 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:26:36,002 - WebSocket closed: None, None
+2025-04-30 15:26:41,006 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:26:41,007 - WebSocket closed: None, None
+2025-04-30 15:26:46,013 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:26:46,013 - WebSocket closed: None, None
+2025-04-30 15:26:51,020 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:26:51,020 - WebSocket closed: None, None
+2025-04-30 15:26:56,026 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:26:56,026 - WebSocket closed: None, None
+2025-04-30 15:27:01,032 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:27:01,032 - WebSocket closed: None, None
+2025-04-30 15:27:06,036 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:27:06,037 - WebSocket closed: None, None
+2025-04-30 15:27:11,039 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:27:11,039 - WebSocket closed: None, None
+2025-04-30 15:27:16,044 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:27:16,044 - WebSocket closed: None, None
+2025-04-30 15:27:21,048 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:27:21,049 - WebSocket closed: None, None
+2025-04-30 15:27:26,053 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:27:26,053 - WebSocket closed: None, None
+2025-04-30 15:27:31,056 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:27:31,057 - WebSocket closed: None, None
+2025-04-30 15:27:36,061 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:27:36,062 - WebSocket closed: None, None
+2025-04-30 15:27:41,066 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:27:41,067 - WebSocket closed: None, None
+2025-04-30 15:27:46,074 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:27:46,074 - WebSocket closed: None, None
+2025-04-30 15:27:51,079 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:27:51,079 - WebSocket closed: None, None
+2025-04-30 15:27:56,084 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:27:56,084 - WebSocket closed: None, None
+2025-04-30 15:28:01,091 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:28:01,091 - WebSocket closed: None, None
+2025-04-30 15:28:06,098 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:28:06,098 - WebSocket closed: None, None
+2025-04-30 15:28:11,105 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:28:11,105 - WebSocket closed: None, None
+2025-04-30 15:28:16,111 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:28:16,111 - WebSocket closed: None, None
+2025-04-30 15:28:21,117 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:28:21,118 - WebSocket closed: None, None
+2025-04-30 15:28:26,125 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:28:26,125 - WebSocket closed: None, None
+2025-04-30 15:28:31,132 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:28:31,133 - WebSocket closed: None, None
+2025-04-30 15:28:36,138 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:28:36,138 - WebSocket closed: None, None
+2025-04-30 15:28:41,141 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:28:41,141 - WebSocket closed: None, None
+2025-04-30 15:28:46,143 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:28:46,143 - WebSocket closed: None, None
+2025-04-30 15:28:51,153 - WebSocket error: maximum recursion depth exceeded while calling a Python object
+2025-04-30 15:28:51,153 - WebSocket closed: None, None
+2025-04-30 15:28:56,160 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:28:56,160 - WebSocket closed: None, None
+2025-04-30 15:29:01,164 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:29:01,164 - WebSocket closed: None, None
+2025-04-30 15:29:06,169 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:29:06,169 - WebSocket closed: None, None
+2025-04-30 15:29:11,172 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:29:11,173 - WebSocket closed: None, None
+2025-04-30 15:29:16,177 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:29:16,177 - WebSocket closed: None, None
+2025-04-30 15:29:21,180 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:29:21,181 - WebSocket closed: None, None
+2025-04-30 15:29:26,184 - WebSocket error: [Errno 8] nodename nor servname provided, or not known
+2025-04-30 15:47:33,615 - Connected to Vybe live endpoint
+2025-04-30 16:00:50,479 - Connected to Vybe live endpoint
+2025-04-30 16:02:09,425 - Connected to Vybe live endpoint
+2025-04-30 16:06:24,398 - WebSocket error: [Errno 54] Connection reset by peer
+2025-04-30 16:06:24,399 - WebSocket closed: None, None
+2025-04-30 16:06:30,596 - Connected to Vybe live endpoint
+2025-04-30 16:06:30,597 - Sent configuration for raydium: {'type': 'configure', 'filters': {'trades': [{'programId': '675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8', 'marketId': ''}], 'transfers': [], 'oraclePrices': []}}
+2025-04-30 16:10:37,278 - Connected to Vybe live endpoint
+2025-04-30 16:12:10,342 - Connected to Vybe live endpoint
+2025-04-30 16:16:16,992 - Connected to Vybe live endpoint
+2025-04-30 16:19:07,849 - Connected to Vybe live endpoint
+2025-04-30 16:24:26,796 - Connected to Vybe live endpoint
+2025-04-30 16:30:08,681 - Connected to Vybe live endpoint

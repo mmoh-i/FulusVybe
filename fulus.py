@@ -41,6 +41,12 @@ TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 GROK_API_KEY = os.getenv("GROK_API_KEY")
 VYBE_API_BASE_URL = os.getenv("VYBE_API_BASE_URL")
 
+# Proxy configuration for PythonAnywhere
+PROXY = {
+    "http": "http://proxy.server:3128",
+    "https": "http://proxy.server:3128"
+}
+
 # DEX program IDs
 DEX_PROGRAM_IDS = {
     "orca": "9W959DqEETiGZocYWCQPaJ6sBmUzgfxXfqGeTEdp3aQP",
@@ -76,6 +82,7 @@ def get_nav_buttons():
 )
 def fetch_wallet_data(wallet_address):
     headers = {"accept": "application/json", "X-API-KEY": VYBE_API_KEY}
+    proxies = PROXY if os.getenv("PYTHONANYWHERE") == "true" else None
     data = {
         "token_balances": {},
         "historical_balances": {},
@@ -84,7 +91,7 @@ def fetch_wallet_data(wallet_address):
 
     try:
         url = f"{VYBE_API_BASE_URL}/account/token-balance/{wallet_address}"
-        response = requests.get(url, headers=headers, timeout=30)
+        response = requests.get(url, headers=headers, timeout=30, proxies=proxies)
         response.raise_for_status()
         data["token_balances"] = response.json()
     except requests.RequestException as e:
@@ -93,7 +100,7 @@ def fetch_wallet_data(wallet_address):
 
     try:
         url = f"{VYBE_API_BASE_URL}/account/token-balance-ts/{wallet_address}"
-        response = requests.get(url, headers=headers, timeout=30)
+        response = requests.get(url, headers=headers, timeout=30, proxies=proxies)
         response.raise_for_status()
         data["historical_balances"] = response.json()
     except requests.RequestException as e:
@@ -102,7 +109,7 @@ def fetch_wallet_data(wallet_address):
 
     try:
         url = f"{VYBE_API_BASE_URL}/account/nft-balance/{wallet_address}"
-        response = requests.get(url, headers=headers, timeout=30)
+        response = requests.get(url, headers=headers, timeout=30, proxies=proxies)
         response.raise_for_status()
         data["nft_balances"] = response.json()
     except requests.RequestException as e:
@@ -119,8 +126,9 @@ def fetch_wallet_data(wallet_address):
 )
 def fetch_token_holders(token_mint):
     headers = {"accept": "application/json", "X-API-KEY": VYBE_API_KEY}
-    url = f"{VYBE_API_BASE_URL}/token/{token_mint}/holders-ts"
-    response = requests.get(url, headers=headers, timeout=30)
+    proxies = PROXY if os.getenv("PYTHONANYWHERE") == "true" else None
+    url = f"{VYBE_API_BASE_URL}/token/{token_mint}/holders-ts?days=30"
+    response = requests.get(url, headers=headers, timeout=30, proxies=proxies)
     response.raise_for_status()
     return response.json()
 
@@ -132,8 +140,9 @@ def fetch_token_holders(token_mint):
 )
 def fetch_tokens():
     headers = {"accept": "application/json", "X-API-KEY": VYBE_API_KEY}
+    proxies = PROXY if os.getenv("PYTHONANYWHERE") == "true" else None
     url = f"{VYBE_API_BASE_URL}/tokens"
-    response = requests.get(url, headers=headers, timeout=30)
+    response = requests.get(url, headers=headers, timeout=30, proxies=proxies)
     response.raise_for_status()
     return response.json()
 
@@ -195,8 +204,9 @@ def generate_insights(state: WalletState):
 )
 def fetch_program_active_users(program_address):
     headers = {"accept": "application/json", "X-API-KEY": VYBE_API_KEY}
+    proxies = PROXY if os.getenv("PYTHONANYWHERE") == "true" else None
     url = f"{VYBE_API_BASE_URL}/program/{program_address}/active-users-ts"
-    response = requests.get(url, headers=headers, timeout=30)
+    response = requests.get(url, headers=headers, timeout=30, proxies=proxies)
     response.raise_for_status()
     return response.json()
 
@@ -208,8 +218,9 @@ def fetch_program_active_users(program_address):
 )
 def fetch_token_trades():
     headers = {"accept": "application/json", "X-API-KEY": VYBE_API_KEY}
+    proxies = PROXY if os.getenv("PYTHONANYWHERE") == "true" else None
     url = f"{VYBE_API_BASE_URL}/token/trades"
-    response = requests.get(url, headers=headers, timeout=30)
+    response = requests.get(url, headers=headers, timeout=30, proxies=proxies)
     response.raise_for_status()
     return response.json()
 
@@ -244,22 +255,44 @@ live_lock = threading.Lock()
 dex_queue = queue.Queue()
 
 def run_websocket():
+    # Check if running on PythonAnywhere
+    if os.getenv("PYTHONANYWHERE") == "true":
+        logger.info("WebSocket disabled on PythonAnywhere due to proxy restrictions")
+        return
+
     def on_message(ws, message):
         try:
             data = json.loads(message)
             logger.debug(f"Raw WebSocket message: {json.dumps(data, indent=2)}")
-            if (data.get('signature') or data.get('mintAddress') or 
-                data.get('data', {}).get('signature') or data.get('data', {}).get('mintAddress') or
-                data.get('txId') or data.get('mint')):
+            
+            # Handle DEX-specific message formats
+            program_id = data.get('data', {}).get('programId')
+            if program_id in DEX_PROGRAM_IDS.values():
+                # Handle trades from all DEXs
+                trade_data = data.get('data', {})
+                if trade_data.get('type') == 'trade':
+                    with live_lock:
+                        live_transactions.append(data)
+                        if len(live_transactions) > 100:
+                            live_transactions.pop(0)
+            # Handle other message types
+            elif (data.get('signature') or data.get('mintAddress') or
+                  data.get('data', {}).get('signature') or data.get('data', {}).get('mintAddress') or
+                  data.get('txId') or data.get('mint')):
                 with live_lock:
                     live_transactions.append(data)
                     if len(live_transactions) > 100:
                         live_transactions.pop(0)
         except json.JSONDecodeError:
             logger.warning("Received invalid JSON message")
+        except Exception as e:
+            logger.error(f"Error processing WebSocket message: {e}")
 
     def on_error(ws, error):
         logger.error(f"WebSocket error: {error}")
+        # Attempt to reconnect after a delay
+        time.sleep(5)
+        run_websocket()
 
     def on_open(ws):
         logger.info("Connected to Vybe live endpoint")
@@ -274,7 +307,7 @@ def run_websocket():
                             "trades": [
                                 {
                                     "programId": program_id,
-                                    "marketId": ""
+                                    "marketId": "*"  # Allow all markets for all DEXs
                                 }
                             ],
                             "transfers": [],
@@ -290,6 +323,7 @@ def run_websocket():
 
     def on_close(ws, close_status_code, close_msg):
         logger.info(f"WebSocket closed: {close_status_code}, {close_msg}")
+        # Attempt to reconnect after a delay
         time.sleep(5)
         run_websocket()
 
@@ -359,8 +393,16 @@ async def tokens(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     )
 
 async def trades(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    # Get the query if it exists
     query = update.callback_query
-    await query.answer()
+    
+    # Answer the callback query if it exists
+    if query:
+        await query.answer()
+        message = query.message
+    else:
+        message = update.message
+
     keyboard = [
         [
             InlineKeyboardButton("🔥 Live Trades", callback_data="live"),
@@ -372,10 +414,10 @@ async def trades(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         get_nav_buttons()[0]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    await query.message.reply_text(
-        "💸 **Trades**:\nCatch the action on Solana DEXs!",
+    await message.reply_text(
+        "💸 <b>Trades</b>:\nCatch the action on Solana DEXs!",
         reply_markup=reply_markup,
-        parse_mode="Markdown"
+        parse_mode="HTML"
     )
 
 async def commands(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -440,8 +482,7 @@ async def holders_prompt(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
     reply_markup = InlineKeyboardMarkup(keyboard)
     await query.message.reply_text(
         "👥 Need a token mint address for holder stats! (e.g., /token_holders So11111111111111111111111111111111111111112)",
-        reply_markup=reply_markup,
-        parse_mode="Markdown"
+        reply_markup=reply_markup
     )
 
 async def analyze(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -522,36 +563,60 @@ async def price(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
             reply_markup=reply_markup
         )
         return
+
     token_mint = context.args[0]
     headers = {"accept": "application/json", "X-API-KEY": VYBE_API_KEY}
     try:
         url = f"{VYBE_API_BASE_URL}/token/price-history/{token_mint}?days=30"
         response = requests.get(url, headers=headers, timeout=30)
-        response.raise_for_status()
-        data = response.json()
-        if not data.get("data"):
-            response = "No price data found—check Vybe for more: https://vybe.fyi"
-        else:
-            prices = data["data"]
-            response = (
-                f"**30-day Price History for {token_mint[:8]}...**\n"
-                f"Latest: ${prices[-1]['priceUsd']}\n"
-                f"Max: ${max(p['priceUsd'] for p in prices):.2f}\n"
-                f"More on Vybe: https://vybe.fyi"
+        
+        if response.status_code == 404:
+            response_text = (
+                f"Token {token_mint[:8]}... not found on Vybe.\n"
+                "This could mean:\n"
+                "1. The token is too new\n"
+                "2. The token hasn't been traded yet\n"
+                "3. The token mint address is incorrect\n\n"
+                "Try checking the token on Vybe: https://vybe.fyi"
             )
+        elif response.status_code != 200:
+            response_text = (
+                f"Vybe API returned error {response.status_code}\n"
+                "Please try again later or check Vybe: https://vybe.fyi"
+            )
+        else:
+            data = response.json()
+            if not data.get("data"):
+                response_text = "No price data found—check Vybe for more: https://vybe.fyi"
+            else:
+                prices = data["data"]
+                if not prices:
+                    response_text = "No price history available for this token yet"
+                else:
+                    latest_price = prices[-1]['priceUsd']
+                    max_price = max(p['priceUsd'] for p in prices)
+                    min_price = min(p['priceUsd'] for p in prices)
+                    response_text = (
+                        f"<b>30-day Price History for {token_mint[:8]}...</b>\n"
+                        f"Latest: ${latest_price:.6f}\n"
+                        f"Max: ${max_price:.6f}\n"
+                        f"Min: ${min_price:.6f}\n"
+                        f"More on Vybe: https://vybe.fyi"
+                    )
     except requests.RequestException as e:
-        response = f"Price data unavailable: {str(e)}—try again!\nFor more, visit Vybe: https://vybe.fyi"
-        keyboard = [
-            [InlineKeyboardButton("🔄 Retry", callback_data="price_prompt")],
-            get_nav_buttons()[0]
-        ]
-        reply_markup = InlineKeyboardMarkup(keyboard)
-        await update.message.reply_text(response, reply_markup=reply_markup, parse_mode="Markdown")
-        return
+        response_text = (
+            f"Could not fetch price data: {str(e)}\n"
+            "Please try again later or check Vybe: https://vybe.fyi"
+        )
+    except Exception as e:
+        response_text = (
+            f"An unexpected error occurred: {str(e)}\n"
+            "Please try again later or check Vybe: https://vybe.fyi"
+        )
 
     keyboard = get_nav_buttons()
     reply_markup = InlineKeyboardMarkup(keyboard)
-    await update.message.reply_text(response, reply_markup=reply_markup, parse_mode="Markdown")
+    await update.message.reply_text(response_text, reply_markup=reply_markup, parse_mode="HTML")
 
 async def program_trends(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     if not context.args:
@@ -591,15 +656,25 @@ async def program_trends(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
     await update.message.reply_text(response, reply_markup=reply_markup)
 
 async def token_trades(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    # Get the query if it exists
+    query = update.callback_query
+    
+    # Answer the callback query if it exists
+    if query:
+        await query.answer()
+        message = query.message
+    else:
+        message = update.message
+
     try:
         data = fetch_token_trades()
         if "error" in data:
-            response = f"Failed to fetch trades—try Vybe: https://vybe.fyi"
+            response = "Failed to fetch trades—try Vybe: https://vybe.fyi"
         else:
             trades = data.get("data", [])[:3]
             if trades:
                 response = (
-                    "**Recent Trades**\n" +
+                    "<b>Recent Trades</b>\n" +
                     "\n".join([f"{t['baseMintAddress'][:8]}... for {t['quoteSize']} SOL at ${t['price']}" for t in trades]) +
                     "\nFor a comprehensive list, visit Vybe: https://vybe.fyi"
                 )
@@ -612,12 +687,12 @@ async def token_trades(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
             get_nav_buttons()[0]
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
-        await update.message.reply_text(response, reply_markup=reply_markup)
+        await message.reply_text(response, reply_markup=reply_markup, parse_mode="HTML")
         return
 
     keyboard = get_nav_buttons()
     reply_markup = InlineKeyboardMarkup(keyboard)
-    await update.message.reply_text(response, reply_markup=reply_markup, parse_mode="Markdown")
+    await message.reply_text(response, reply_markup=reply_markup, parse_mode="HTML")
 
 async def token_holders(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     if not context.args:
@@ -632,50 +707,82 @@ async def token_holders(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
     try:
         data = fetch_token_holders(token_mint)
         if "error" in data:
-            response = f"Failed to fetch holder data—try Vybe: https://vybe.fyi"
+            response = (
+                f"Token {token_mint[:8]}... not found on Vybe.\n\n"
+                "This could mean:\n"
+                "1. The token is too new\n"
+                "2. The token hasn't been traded yet\n"
+                "3. The token mint address is incorrect\n\n"
+                "Try checking the token on Vybe: https://vybe.fyi"
+            )
         else:
             holders = data.get("data", [])
             if holders:
                 latest = holders[-1]
                 timestamp = datetime.utcfromtimestamp(latest['holdersTimestamp']).strftime('%Y-%m-%d')
                 response = (
-                    f"**Token Holders for {token_mint[:8]}...**\n"
+                    f"Token Holders for {token_mint[:8]}... (Last 30 days)\n"
                     f"Latest ({timestamp}): {latest['nHolders']} holders\n"
                 )
                 if len(holders) > 1:
                     prev = holders[-2]
                     change = latest['nHolders'] - prev['nHolders']
                     response += f"Change: {'+' if change >= 0 else ''}{change} holders\n"
+                # Add trend information
+                if len(holders) >= 2:
+                    first_day = holders[0]['nHolders']
+                    last_day = holders[-1]['nHolders']
+                    total_change = last_day - first_day
+                    response += f"30-day trend: {'+' if total_change >= 0 else ''}{total_change} holders\n"
                 response += "More holder stats on Vybe: https://vybe.fyi"
             else:
-                response = "No holder data found—check Vybe: https://vybe.fyi"
+                response = (
+                    f"No holder data found for {token_mint[:8]}...\n\n"
+                    "This could mean:\n"
+                    "1. The token is too new\n"
+                    "2. The token hasn't been traded yet\n"
+                    "3. The token mint address is incorrect\n\n"
+                    "Try checking the token on Vybe: https://vybe.fyi"
+                )
     except Exception as e:
-        response = f"Oops, something broke: {str(e)}—try again!\nFor more, visit Vybe: https://vybe.fyi"
+        if "404" in str(e):
+            response = (
+                f"Token {token_mint[:8]}... not found on Vybe.\n\n"
+                "This could mean:\n"
+                "1. The token is too new\n"
+                "2. The token hasn't been traded yet\n"
+                "3. The token mint address is incorrect\n\n"
+                "Try checking the token on Vybe: https://vybe.fyi"
+            )
+        else:
+            response = f"An error occurred: {str(e)}\nPlease try again later or check Vybe: https://vybe.fyi"
         keyboard = [
             [InlineKeyboardButton("🔄 Retry", callback_data="holders_prompt")],
             get_nav_buttons()[0]
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
-        await update.message.reply_text(response, reply_markup=reply_markup, parse_mode="Markdown")
+        await update.message.reply_text(response, reply_markup=reply_markup)
         return
 
     keyboard = get_nav_buttons()
     reply_markup = InlineKeyboardMarkup(keyboard)
-    await update.message.reply_text(response, reply_markup=reply_markup, parse_mode="Markdown")
+    await update.message.reply_text(response, reply_markup=reply_markup)
 
 async def tokens_list(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     try:
         data = fetch_tokens()
         if "error" in data:
-            response = f"Failed to fetch tokens—try Vybe: https://vybe.fyi"
+            response = "Failed to fetch tokens—try Vybe: https://vybe.fyi"
         else:
             tokens = data.get("data", [])[:5]
             if tokens:
-                response = "**Token List**\n"
+                response = "<b>Token List</b>\n"
                 for i, token in enumerate(tokens, 1):
                     mint = token.get('mintAddress', 'N/A')[:8] + '...'
                     supply = f"{token.get('currentSupply', 0):,.6f}".rstrip('0').rstrip('.')
-                    response += f"{i}. {token.get('symbol', 'Unknown')} ({token.get('name', 'Unknown')}): {mint} - Supply: {supply}\n"
+                    symbol = token.get('symbol', 'Unknown')
+                    name = token.get('name', 'Unknown')
+                    response += f"{i}. {symbol} ({name}): {mint} - Supply: {supply}\n"
                 response += "See more tokens on Vybe: https://vybe.fyi"
             else:
                 response = "No tokens found—check Vybe: https://vybe.fyi"
@@ -691,7 +798,12 @@ async def tokens_list(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
 
     keyboard = get_nav_buttons()
     reply_markup = InlineKeyboardMarkup(keyboard)
-    await update.message.reply_text(response, reply_markup=reply_markup, parse_mode="Markdown")
+    
+    # Handle both message and callback query updates
+    if update.callback_query:
+        await update.callback_query.message.reply_text(response, reply_markup=reply_markup, parse_mode="HTML")
+    else:
+        await update.message.reply_text(response, reply_markup=reply_markup, parse_mode="HTML")
 
 async def live(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     query = update.callback_query if update.callback_query else None
@@ -700,6 +812,17 @@ async def live(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         message = query.message
     else:
         message = update.message
+
+    if os.getenv("PYTHONANYWHERE") == "true":
+        response = (
+            "🚫 Live trades are disabled on PythonAnywhere due to WebSocket restrictions.\n"
+            "Please use /token_trades for recent trades or deploy on a platform supporting WebSockets (e.g., Heroku).\n"
+            "More info at https://vybe.fyi"
+        )
+        keyboard = get_nav_buttons()
+        reply_markup = InlineKeyboardMarkup(keyboard)
+        await message.reply_text(response, reply_markup=reply_markup, parse_mode="Markdown")
+        return
 
     keyboard = [
         [
@@ -801,6 +924,17 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         return
 
     if data.startswith("dex_"):
+        if os.getenv("PYTHONANYWHERE") == "true":
+            response = (
+                "🚫 Live trades are disabled on PythonAnywhere due to WebSocket restrictions.\n"
+                "Please use /token_trades for recent trades or deploy on a platform supporting WebSockets (e.g., Heroku).\n"
+                "More info at https://vybe.fyi"
+            )
+            keyboard = get_nav_buttons()
+            reply_markup = InlineKeyboardMarkup(keyboard)
+            await query.message.reply_text(response, reply_markup=reply_markup, parse_mode="Markdown")
+            return
+
         dex = data.split("_")[1]
         with live_lock:
             live_transactions.clear()
@@ -863,13 +997,11 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
             context.args = [update.message.text]
             await token_holders(update, context)
 
-# Set up Telegram bot
 def main():
-    ws_thread = threading.Thread(target=run_websocket)
-    ws_thread.daemon = True
-    ws_thread.start()
-
+    # Create application
     application = Application.builder().token(TELEGRAM_BOT_TOKEN).build()
+    
+    # Add handlers
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("wallet", wallet))
     application.add_handler(CommandHandler("tokens", tokens))
@@ -881,6 +1013,13 @@ def main():
     application.add_handler(CommandHandler("token_holders", token_holders))
     application.add_handler(CallbackQueryHandler(button))
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_text))
+
+    # Start WebSocket thread
+    ws_thread = threading.Thread(target=run_websocket)
+    ws_thread.daemon = True
+    ws_thread.start()
+
+    # Run the bot
     application.run_polling()
 
 if __name__ == "__main__":
